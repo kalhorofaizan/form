@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-
+import './App.css'
 const Form1 = () => {
     //First Name field
     const [firstName, setFirstName] = useState('');
