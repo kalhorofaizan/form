@@ -1,65 +1,54 @@
 import React, {useState} from 'react';
-import {Form, Button, Col, Container} from 'react-bootstrap'
 
 const Form1 = () => {
     //First Name field
-    const [firstName,setFirstName]=useState('');
+    const [firstName, setFirstName] = useState('');
     // Last Name Field
-    const [lastName,setLastName]=useState('');
+    const [lastName, setLastName] = useState('');
     // Options Google Web Referral
-    const [option,setoption]=useState('');
+    const [option, setoption] = useState('');
     // People Field
-    const [peoples,setpeople]=useState('');
-    // List Of People
-    const [optionList,setOptionList]=useState(['Web','Google','Referral']);
-const  send=()=>{
-        if (option==="Referral"){
+    const [peoples, setpeople] = useState('');
+    const send = () => {
+        if (option === "Referral") {
             // write code for referral
         } else {
             // write code for not referral
         }
-};
+    };
 
     return (
-        <Container>
-            <Form>
-                <Form.Row>
-                    <Col>
-                        <Form.Control placeholder="First name" onChange={(e) => {
-                            setFirstName(e.target.value)
-                        }}/>
-                    </Col>
-                    <Col>
-                        <Form.Control placeholder="Last name"  onChange={(e) => {
-                            setLastName(e.target.value)
-                        }} />
-                    </Col>
-                </Form.Row>
+        <div>
+            <form>
+                <label htmlFor="fname">First Name</label>
+                <input type="text" id="FirstName" name="firstname" placeholder="First name" onChange={(e) => {
+                    setFirstName(e.target.value)
+                }}/>
 
+                <label htmlFor="lname">Last Name</label>
+                <input type="text" id="LastName" name="lastname" placeholder="last name" onChange={(e) => {
+                    setLastName(e.target.value)
+                }}/>
 
-                <Form.Group controlId="formBasicCheckbox" onChange={(e)=>{
+                <label htmlFor="Option">Option</label>
+                <select id="Option" name="Option" value={option} onChange={(e) => {
                     setoption(e.target.value)
-                }}  >
-                    <Form.Label>Options</Form.Label>
-                    <Form.Control as="select">
-                        {optionList.map((data)=><option key={data}  value={data} >{data}</option>)}
-                    </Form.Control>
-                </Form.Group>
-
-                {option==="Referral"?
-                    <Form.Group  >
-                        <Form.Control placeholder="People name"  onChange={(e) => {
+                }}> >
+                    <option value="Web">Web</option>
+                    <option value="Google">Google</option>
+                    <option value="Referral">Referral</option>
+                </select>
+                {option === "Referral" ?
+                    <>
+                        <label htmlFor="lname">Peoples</label>
+                        <input type="text" id="PeoplsName" name="Peoples name" placeholder="Peoples" onChange={(e) => {
                             setpeople(e.target.value)
-                        }} />
+                        }}/>
+                    </> : <div/>}
 
-                    </Form.Group> :<div/>}
-
-
-                <Button variant="primary"  onClick={send()}  >
-                    Submit
-                </Button>
-            </Form>
-        </Container>
+                <input type="submit" value="Submit" onClick={send()}/>
+            </form>
+        </div>
 
     );
 };
