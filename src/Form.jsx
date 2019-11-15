@@ -2,11 +2,16 @@ import React, {useState} from 'react';
 import {Form, Button, Col, Container} from 'react-bootstrap'
 
 const Form1 = () => {
-
+    //First Name field
     const [firstName,setFirstName]=useState('');
+    // Last Name Field
     const [lastName,setLastName]=useState('');
+    // Options Google Web Referral
     const [selection,setSelection]=useState('');
+    // People Field
     const [peoples,setpeople]=useState('');
+    // List Of People
+    const [peopleList,setPeopleList]=useState(['Abana','Abel','Abiah']);
 const  send=()=>{
         if (selection==="Referral"){
             // write code for referral
@@ -41,10 +46,14 @@ const  send=()=>{
                 </Form.Group>
 
                 {selection==="Referral"?
-                    <Form.Group>
-                        <Form.Control placeholder="Name of peoples" onChange={(e) => {
-                            setpeople(e.target.value)
-                        }}/>
+                    <Form.Group onChange={(e)=>{
+                        console.log(e.target.value);
+                        setpeople(e.target.value)
+                    }} >
+                        <Form.Label>Peoples</Form.Label>
+                        <Form.Control as="select">
+                            {peopleList.map((data)=><option key={data}  value={data} >{data}</option>)}
+                        </Form.Control>
                     </Form.Group> :<div/>}
 
 
