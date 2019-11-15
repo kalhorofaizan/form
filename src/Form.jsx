@@ -7,13 +7,13 @@ const Form1 = () => {
     // Last Name Field
     const [lastName,setLastName]=useState('');
     // Options Google Web Referral
-    const [selection,setSelection]=useState('');
+    const [option,setoption]=useState('');
     // People Field
     const [peoples,setpeople]=useState('');
     // List Of People
-    const [peopleList,setPeopleList]=useState(['Abana','Abel','Abiah']);
+    const [optionList,setOptionList]=useState(['Web','Google','Referral']);
 const  send=()=>{
-        if (selection==="Referral"){
+        if (option==="Referral"){
             // write code for referral
         } else {
             // write code for not referral
@@ -38,22 +38,20 @@ const  send=()=>{
 
 
                 <Form.Group controlId="formBasicCheckbox" onChange={(e)=>{
-                    setSelection(e.target.value)
+                    setoption(e.target.value)
                 }}  >
-                    <Form.Check type="radio" value='Web'  name="selection"   id={"Web"} label="Web"   />
-                    <Form.Check type="radio" value='Google'  name="selection"  id={"Google"}  label="Google"/>
-                    <Form.Check type="radio" value='Referral'   name="selection" id={"Referral"} label="Referral"/>
+                    <Form.Label>Options</Form.Label>
+                    <Form.Control as="select">
+                        {optionList.map((data)=><option key={data}  value={data} >{data}</option>)}
+                    </Form.Control>
                 </Form.Group>
 
-                {selection==="Referral"?
-                    <Form.Group onChange={(e)=>{
-                        console.log(e.target.value);
-                        setpeople(e.target.value)
-                    }} >
-                        <Form.Label>Peoples</Form.Label>
-                        <Form.Control as="select">
-                            {peopleList.map((data)=><option key={data}  value={data} >{data}</option>)}
-                        </Form.Control>
+                {option==="Referral"?
+                    <Form.Group  >
+                        <Form.Control placeholder="People name"  onChange={(e) => {
+                            setpeople(e.target.value)
+                        }} />
+
                     </Form.Group> :<div/>}
 
 
